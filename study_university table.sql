@@ -30,7 +30,7 @@ CREATE TABLE TB_DEPARTMENT(
 
 -- 강좌는 강좌번호, 분반번호, 강의하는 교수, 강좌이름, 강의요일, 강의교시,
 -- 취득학점 (1~4), 강좌시간 (1~6), 개설 학과, 강의실 정보가 필요하다.
-Create table tb_lecture(
+CREATE TABLE TB_LECTURE(
 Lct_id varchar2(45) PRIMARY,
 Class_id varchar2(45),
 Prof_id varchar2(45),
