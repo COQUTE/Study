@@ -1,13 +1,24 @@
 KH Study Repogitory
 ===================
 KH 정보교육원 스터디 및 협업을 위한 레포지토리
-   
+
 <br>
+
+준비사항
+--------
+
+> ### 먼저 Repogitory를 clone해서 본인 local에 저장!
+- 협업해서 작업하기 위해 원격 Repogitory에만 저장되어 있는 코드를 Local Repogitory로 가져오는 과정
+```bash
+git clone (Repogitory 주소)
+```
+- clone 이후에는 아래 주의사항을 참고하여 함께 협업 진행!
+
 <br>
 <br>
 
-협업간 주의사항
----------------
+주의사항
+--------
 
 > ### master branch에서 절대! 작업이나 push를 하지 않는다. (가장 중요)
 - master는 항상 배포 가능해야 하기 때문에, 안정적인 관리를 위한 develop branch를 따로 운영한다.
@@ -24,7 +35,7 @@ KH 정보교육원 스터디 및 협업을 위한 레포지토리
 // 'feature' 브랜치(feature/login)를 'develop' 브랜치에서 분기
 $ git checkout -b feature/login develop
 
-/**  새로운 기능에 대한 작업 수행  **/
+/**  새로운 기능에 대한 작업 수행 + (add, commit) **/
 
 // 'develop' 브랜치로 이동
 $ git checkout develop
@@ -56,7 +67,7 @@ $ git checkout -
 // 수정된 코드들 모두 merge
 $ git merge develop
 
-/** 협의를 통해 수정된 코드들 반영 & 코드 실행 테스트 완료 후 (add, commit) **/
+/** 협의를 통해 수정된 코드들 반영 & 코드 실행 테스트 완료 + (add, commit) **/
 
 // 수정 코드를 반영해서 'feature' 브랜치에 올림
 $ git push -u origin feature/(기능명)
