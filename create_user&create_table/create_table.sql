@@ -106,6 +106,14 @@ CREATE TABLE TB_CLUB (
 	FOREIGN KEY(MANAGER_ID) REFERENCES TB_PROFESSOR(PROF_ID) ON DELETE SET NULL
 );
 
+-- 학생-동아리 테이블(N:M)
+CREATE TABLE TB_CLUB_MEMBER (
+	STD_ID NUMBER,
+	CLUB_ID NUMBER,
+	FOREIGN KEY (STD_ID) REFERENCES TB_STUDENT(STD_ID) ON DELETE CASCADE,
+	FOREIGN KEY (CLUB_ID) REFERENCES TB_CLUB(CLUB_ID) ON DELETE CASCADE
+);
+
 -- 8. 학생별 등록금 납부 내역을 기록해야 한다. 학생 번호, 등록금 납부 연도, 등록금 납부 학기, 등록금 총액, 납부 총액, 마지막 납부 일자가 기록돼야 한다.
 -- 		납부 총액이 등록금 총액 보다 작을 경우에는 수강내역 "신규 삽입"에서 "등록금 미납"오류를 표시해야 한다.
 CREATE TABLE TB_PAYMENT_HISTORY (
