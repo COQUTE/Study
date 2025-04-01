@@ -1,3 +1,25 @@
+-- 2-1. 교수는 소속학과가 반드시 있어야 하고, 학생을 반드시 담당해야 하며, 강좌에 대한 강의를 반드시 해야 한다.
+-- 			교수는 1개 이상의 복수 학과에 소속이 가능하다.
+-- 2-2. 모든 교수는 교수번호를 부여하여 식별하며 교수이름, 교수주소, 교수전화번호. 교수이메일, 소속 학과번호 정보를 가진다. 
+CREATE TABLE TB_PROFESSOR (
+	PROF_ID VARCHAR2(3 BYTE) PRIMARY KEY, -- 교수 번호
+	PROF_NAME VARCHAR2(15 BYTE) NOT NULL, -- 교수 이름
+	PROF_ADDRESS VARCHAR2(100 BYTE) NOT NULL, -- 교수 주소
+	PROF_PHONE VARCHAR2(25 BYTE) NOT NULL, -- 교수 전화번호
+	PROF_EMAIL VARCHAR2(25 BYTE) NOT NULL -- 교수 이메일
+);
+
+-- 4. 학과는 학과번호를 부여하여 식별하며 학과명, 학과전화번호, 학과사무실 정보를 가진다.
+-- 		해당 학과에서 개설하는 강좌가 반드시 1개 이상 존재해야 하며, 동시에 학과장이 1명 있어야 한다.
+CREATE TABLE TB_DEPARTMENT (
+	DEPT_ID VARCHAR2(3 BYTE) PRIMARY KEY, -- 학과 번호
+	DEPT_TITLE VARCHAR2(60 BYTE) NOT NULL UNIQUE, -- 학과명
+	DEPT_TEL VARCHAR2(25 BYTE) NOT NULL, -- 학과 전화번호
+	DEPT_OFFICE VARCHAR2(60 BYTE) NOT NULL, -- 학과 사무실
+	HEAD_PROF VARCHAR2(3 BYTE), -- 학과장
+	FOREIGN KEY(HEAD_PROF) REFERENCES TB_PROFESSOR(PROF_ID) ON DELETE SET NULL
+);
+
 -- 1. 모든 학생은 학생번호를 부여하여 식별하며 학생이름, 학생주소. 학생전화번호. 학생이메일, 전공 학과, 지도교수 정보, 등록금 납부 계좌 정보를 가진다.
 -- 		학생은 부전공을 1개까지 신청할 수 있다. 학생은 한학기에 최대 10학점까지만 수강 할 수 있다.
 CREATE TABLE TB_STUDENT (
@@ -11,17 +33,6 @@ CREATE TABLE TB_STUDENT (
 	ACCOUNT_NUM VARCHAR2(25 BYTE), -- 등록금 납부 계좌
 	FOREIGN KEY(MAJOR) REFERENCES TB_DEPARTMENT(DEPT_ID) ON DELETE SET NULL,
 	FOREIGN KEY(MINOR) REFERENCES TB_DEPARTMENT(DEPT_ID) ON DELETE SET NULL
-);
-
--- 2-1. 교수는 소속학과가 반드시 있어야 하고, 학생을 반드시 담당해야 하며, 강좌에 대한 강의를 반드시 해야 한다.
--- 			교수는 1개 이상의 복수 학과에 소속이 가능하다.
--- 2-2. 모든 교수는 교수번호를 부여하여 식별하며 교수이름, 교수주소, 교수전화번호. 교수이메일, 소속 학과번호 정보를 가진다. 
-CREATE TABLE TB_PROFESSOR (
-	PROF_ID VARCHAR2(3 BYTE) PRIMARY KEY, -- 교수 번호
-	PROF_NAME VARCHAR2(15 BYTE) NOT NULL, -- 교수 이름
-	PROF_ADDRESS VARCHAR2(100 BYTE) NOT NULL, -- 교수 주소
-	PROF_PHONE VARCHAR2(25 BYTE) NOT NULL, -- 교수 전화번호
-	PROF_EMAIL VARCHAR2(25 BYTE) NOT NULL -- 교수 이메일
 );
 
 -- 학과-교수 테이블(N:M)
@@ -43,21 +54,12 @@ CREATE TABLE TB_MANAGEMENT (
 	CHECK(SEMESTER IN('1', '2'))
 );
 
--- 4. 학과는 학과번호를 부여하여 식별하며 학과명, 학과전화번호, 학과사무실 정보를 가진다.
--- 		해당 학과에서 개설하는 강좌가 반드시 1개 이상 존재해야 하며, 동시에 학과장이 1명 있어야 한다.
-CREATE TABLE TB_DEPARTMENT (
-	DEPT_ID VARCHAR2(3 BYTE) PRIMARY KEY, -- 학과 번호
-	DEPT_TITLE VARCHAR2(60 BYTE) NOT NULL UNIQUE, -- 학과명
-	DEPT_TEL VARCHAR2(25 BYTE) NOT NULL, -- 학과 전화번호
-	DEPT_OFFICE VARCHAR2(60 BYTE) NOT NULL, -- 학과 사무실
-	HEAD_PROF VARCHAR2(3 BYTE), -- 학과장
-	FOREIGN KEY(HEAD_PROF) REFERENCES TB_PROFESSOR(PROF_ID) ON DELETE SET NULL
-);
+
 
 -- 5. 강좌는 강좌번호, 분반번호, 강의하는 교수, 강좌이름, 강의요일, 강의교시, 취득학점 (1~4), 강좌시간 (1~6), 개설 학과, 강의실 정보가 필요하다.
 CREATE TABLE TB_LECTURE (
-	LCT_ID VARCHAR2(3 BYTE) PRIMARY KEY, -- 강좌 번호
-	CLASS_ID VARCHAR2(3 BYTE) NOT NULL, -- 분반 번호
+	LCT_ID VARCHAR2(3 BYTE), -- 강좌 번호
+	CLASS_ID VARCHAR2(3 BYTE), -- 분반 번호
 	PROF_ID VARCHAR2(3 BYTE), -- 강의하는 교수
 	LCT_NAME VARCHAR2(60 BYTE) NOT NULL UNIQUE, -- 강좌 이름
 	DAY CHAR(3 BYTE) NOT NULL, -- 강의 요일
@@ -66,7 +68,7 @@ CREATE TABLE TB_LECTURE (
 	HOUR NUMBER NOT NULL, -- 강좌시간
 	DEPT_ID VARCHAR2(3 BYTE), -- 개설 학과
 	CLASSROOM VARCHAR2(60 BYTE) NOT NULL, -- 강의실 정보
-	UNIQUE(LCT_ID, CLASS_ID),
+	PRIMARY KEY(LCT_ID, CLASS_ID),
 	UNIQUE(DAY, PERIOD, CLASSROOM),
 	CHECK(CREDIT BETWEEN 1 AND 4),
 	CHECK(HOUR BETWEEN 1 AND 6),
@@ -74,10 +76,11 @@ CREATE TABLE TB_LECTURE (
 	FOREIGN KEY(DEPT_ID) REFERENCES TB_DEPARTMENT(DEPT_ID) ON DELETE CASCADE
 );
 
--- 6. 수강내역은 학생번호, 강좌번호. 교수번호를 부여하여 식별하며 출석점수, 중간고사점수, 기말고사점수, 기타 점수, 총점 (0 ~ 100), 평점 (A ~ F) 정보를 가진다.
+-- 6. 수강내역은 학생번호, 강좌번호/분반번호, 교수번호를 부여하여 식별하며 출석점수, 중간고사점수, 기말고사점수, 기타 점수, 총점 (0 ~ 100), 평점 (A ~ F) 정보를 가진다.
 CREATE TABLE TB_COURSE_HISTORY (
 	STD_ID VARCHAR2(3 BYTE), -- 학생 번호
 	LCT_ID VARCHAR2(3 BYTE), -- 강좌 번호
+	CLASS_ID VARCHAR2(3 BYTE), -- 분반 번호
 	PROF_ID VARCHAR2(3 BYTE), -- 교수 번호
 	ATTEND_SCR NUMBER DEFAULT NULL, -- 출석 점수
 	MID_SCR NUMBER DEFAULT NULL, -- 중간고사
@@ -85,11 +88,11 @@ CREATE TABLE TB_COURSE_HISTORY (
 	ETC_SCR NUMBER DEFAULT NULL, -- 기타 점수
 	TOTAL_SCR NUMBER DEFAULT NULL, -- 총점
 	GRADE CHAR(1 BYTE) NOT NULL, -- 평점
-	PRIMARY KEY(STD_ID, LCT_ID, PROF_ID),
+	PRIMARY KEY(STD_ID, LCT_ID, CLASS_ID, PROF_ID),
 	CHECK(TOTAL_SCR BETWEEN 0 AND 100),
 	CHECK(GRADE BETWEEN 'A' AND 'F'),
 	FOREIGN KEY(STD_ID) REFERENCES TB_STUDENT(STD_ID) ON DELETE CASCADE,
-	FOREIGN KEY(LCT_ID) REFERENCES TB_LECTURE(LCT_ID) ON DELETE CASCADE,
+	FOREIGN KEY(LCT_ID, CLASS_ID) REFERENCES TB_LECTURE(LCT_ID, CLASS_ID) ON DELETE CASCADE,
 	FOREIGN KEY(PROF_ID) REFERENCES TB_PROFESSOR(PROF_ID) ON DELETE SET NULL
 );
 
