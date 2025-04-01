@@ -27,7 +27,7 @@ git clone (Repogitory 주소)
 
 > ### develop branch에서도 직접 작업하지 않고 feature branch를 만든 후 merge한다.
 - develop 또한 많은 작업들이 동시에 이뤄지기 때문에, 주의해서 작업한다.
-- feature branch 작명 규칙은 feature/기능명 (ex. feature/login)
+- feature branch 작명 규칙은 feature/[기능명] (ex. feature/login)
 
 <br>
 
@@ -36,20 +36,20 @@ git clone (Repogitory 주소)
 $ git pull origin develop
 
 // 'feature' 브랜치를 'develop' 브랜치에서 분기
-$ git checkout -b feature/(기능명) develop
+$ git checkout -b feature/[기능명] develop
 
 /**  새로운 기능에 대한 작업 수행 + (add, commit) **/
 
 // 원격 레파지토리에 본인이 local에서 만든 'feature' 브랜치를 올림
-$ git push -u origin feature/(기능명)
+$ git push -u origin feature/[기능명]
 
 /** github에서 Pull Request! 이후 논의해서 merge 진행 **/
 
-// `feature/login` 브랜치 삭제
-$ git branch -d feature/login
+// `feature/[기능명]` 브랜치 삭제
+$ git branch -d feature/[기능명]
 
 // 원격 레파지토리에 올려놓은 'feature' 브랜치 삭제
-$ git push origin --delete feature/(기능명)
+$ git push origin --delete feature/[기능명]
 ```
 
 <br>
@@ -61,7 +61,7 @@ $ git push origin --delete feature/(기능명)
 $ git pull origin develop
 
 // 'feature' 브랜치로 돌아감
-$ git checkout feature/(기능명)
+$ git checkout feature/[기능명]
 // '-'를 사용하면 직전 작업하던 브랜치로 돌아가기 때문에 동일하게 동작힘
 $ git checkout -
 
@@ -71,7 +71,7 @@ $ git merge develop
 /** 협의를 통해 수정된 코드들 반영 & 코드 실행 테스트 완료 + (add, commit) **/
 
 // 수정 코드를 반영해서 'feature' 브랜치에 올림
-$ git push origin feature/(기능명)
+$ git push origin feature/[기능명]
 
 /** 본인 'feature' 브랜치에서 다시 develop에 Pull Request 작업 완료 **/
 ```
