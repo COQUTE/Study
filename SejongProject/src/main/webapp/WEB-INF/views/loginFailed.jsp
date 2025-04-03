@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>샘플입니다.</title>
+<title>로그인부터 하쇼</title>
 </head>
 <body>
 
