@@ -17,7 +17,7 @@ public class LoginController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		System.out.println("test44444444444441");
 		String stdId = req.getParameter("stdId");
 		
 		// 학번이 입력되었기 때문에
@@ -30,12 +30,14 @@ public class LoginController extends HttpServlet {
 		Student student = service.selectStdId(stdId);
 		
 		StringBuilder sb = new StringBuilder();
-		
+		System.out.println("test1");
 		if(student == null) {
 			sb.append("loginFailed");
+			System.out.println("test2");
 			
 		} else {
 			sb.append("loginSuccess");
+			System.out.println("test3");
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + sb.toString() + ".jsp");
