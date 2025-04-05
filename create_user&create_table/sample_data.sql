@@ -235,11 +235,11 @@ INSERT INTO TB_COURSE_HISTORY VALUES('S008', 'L048', '002', 'P008', 9, 24, 32, 7
 
 -- 동아리 테이블 샘플 데이터
 INSERT INTO TB_CLUB VALUES('C001', '로봇공학연구회', 2, 'S005', 'P003', '공학관 403호');
-INSERT INTO TB_CLUB VALUES('C002', '프로그래밍 동아리', 2, 'S012', 'P007', 'IT관 202호');
-INSERT INTO TB_CLUB VALUES('C003', '음악 감상 모임', 2, 'S018', 'P010', '예술관 305호');
+INSERT INTO TB_CLUB VALUES('C002', '프로그래밍 동아리', 2, 'S002', 'P007', 'IT관 202호');
+INSERT INTO TB_CLUB VALUES('C003', '음악 감상 모임', 2, 'S017', 'P010', '예술관 305호');
 INSERT INTO TB_CLUB VALUES('C004', '사진 촬영 동아리', 2, 'S003', 'P002', '학생회관 102호');
-INSERT INTO TB_CLUB VALUES('C005', '축구 동아리', 2, 'S014', 'P005', '운동장');
-INSERT INTO TB_CLUB VALUES('C006', '독서 토론회', 2, 'S020', 'P009', '도서관 세미나실');
+INSERT INTO TB_CLUB VALUES('C005', '축구 동아리', 2, 'S004', 'P005', '운동장');
+INSERT INTO TB_CLUB VALUES('C006', '독서 토론회', 2, 'S019', 'P009', '도서관 세미나실');
 INSERT INTO TB_CLUB VALUES('C007', '창업 연구회', 2, 'S001', 'P004', '창업센터 201호');
 INSERT INTO TB_CLUB VALUES('C008', '요리 연구회', 2, 'S009', 'P008', '학생회관 305호');
 INSERT INTO TB_CLUB VALUES('C009', '애니메이션 감상회', 2, 'S016', 'P006', '미디어관 101호');
