@@ -13,5 +13,7 @@
 	여러 기능들 중 하나를 선택할 수 있도록 하면 될 듯
 	</p>
 	
+	<a href="/function/selectClub">소속 동아리 정보 조회</a>
+	
 </body>
 </html>

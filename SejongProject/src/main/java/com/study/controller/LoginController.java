@@ -34,8 +34,14 @@ public class LoginController extends HttpServlet {
 		if(student == null) {
 			sb.append("loginFailed");
 			
+			// 로그인 실패시 session 객체에 {login : false} 세팅
+			req.getSession().setAttribute("login", false);
 		} else {
 			sb.append("loginSuccess");
+			
+			// 로그인 성공시 session 객체에 {login : true}, {stdId : 현재 로그인한 학생 학번} 세팅
+			req.getSession().setAttribute("login", true);
+			req.getSession().setAttribute("stdId", stdId);
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + sb.toString() + ".jsp");

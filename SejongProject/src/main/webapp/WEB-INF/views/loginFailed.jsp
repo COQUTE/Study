@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<c:if test="${empty sessionScope.login}">
+	<c:if test="${sessionScope.login == false}">
 		<script>
 			alert("로그인부터 다시 시도해주세요.");
 		</script>
