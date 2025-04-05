@@ -3,8 +3,11 @@ package com.study.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.study.common.Template;
+import com.study.model.dto.Club;
 import com.study.model.dto.Student;
 
 public class SejongDAO {
@@ -45,6 +48,89 @@ public class SejongDAO {
 		}
 		
 		return std;
+	}
+
+	public List<Club> selectClub(Connection conn, String stdId) {
+
+		List<Club> clubList = null;
+		
+		try {
+			String query = """
+					SELECT CLUB_ID, CLUB_NAME, STD_AMOUNT, PRESIDENT_ID, CLUB_MANAGER_ID, CLUBROOM
+					FROM TB_CLUB
+					WHERE CLUB_ID IN (SELECT CLUB_ID
+									 FROM TB_CLUB_MEMBER
+									 WHERE STD_ID = ?)
+					""";
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, stdId);
+			
+			rs = pstmt.executeQuery();
+			
+			if(!rs.isBeforeFirst())
+				return clubList;
+			
+			clubList = new ArrayList<Club>();
+			
+			while(rs.next()) {
+				clubList.add(new Club(rs.getString(1), rs.getString(2), rs.getInt(3), 
+									rs.getString(4), rs.getString(5), rs.getString(6)));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			Template.close(rs);
+			Template.close(pstmt);
+		}
+		
+		return clubList;
+	}
+
+	public List<Student> selectClubMember(Connection conn, String stdId) {
+
+		List<Student> stdList = null;
+		
+		try {
+			String query = """
+					SELECT STD_ID, STD_NAME, STD_ADDRESS, STD_PHONE, STD_EMAIL, MAJOR, MINOR, ACCOUNT_NUM
+					FROM TB_STUDENT
+					WHERE STD_ID IN (SELECT STD_ID
+									FROM TB_CLUB_MEMBER
+									WHERE CLUB_ID = (SELECT CLUB_ID
+									 				FROM TB_CLUB
+									 				WHERE PRESIDENT_ID = ?))
+					""";
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, stdId);
+			
+			rs = pstmt.executeQuery();
+			
+			if(!rs.isBeforeFirst())
+				return stdList;
+			
+			stdList = new ArrayList<Student>();
+			
+			while(rs.next()) {
+				stdList.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3),
+									rs.getString(4), rs.getString(5), rs.getString(6),
+									rs.getString(7), rs.getString(8)));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			Template.close(rs);
+			Template.close(pstmt);
+		}
+		
+		return stdList;
 	}
 	
 	

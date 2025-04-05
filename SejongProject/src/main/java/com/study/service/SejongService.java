@@ -1,9 +1,11 @@
 package com.study.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.study.common.Template;
 import com.study.model.dao.SejongDAO;
+import com.study.model.dto.Club;
 import com.study.model.dto.Student;
 
 public class SejongService {
@@ -28,4 +30,27 @@ public class SejongService {
 		return targetStd;
 	}
 
+	public List<Club> selectClub(String stdId) {
+
+		Connection conn = Template.getConnection();
+		
+		List<Club> clubList = dao.selectClub(conn, stdId);
+		
+		Template.close(conn);
+		
+		return clubList;
+	}
+
+	public List<Student> selectClubMember(String stdId) {
+		
+		Connection conn = Template.getConnection();
+		
+		List<Student> stdList = dao.selectClubMember(conn, stdId);
+		
+		Template.close(conn);
+		
+		return stdList;
+	}
+	
+	
 }
