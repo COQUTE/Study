@@ -3,6 +3,7 @@ package com.study.controllers;
 import java.io.IOException;
 import java.util.List;
 
+import com.study.model.dto.Score;
 import com.study.model.dto.Student;
 import com.study.service.SejongService;
 
@@ -23,12 +24,12 @@ public class printGradeController extends HttpServlet {
 		
 		SejongService service = new SejongService();
 		
-		List<Student> printGrade = service.printGrade(stdId);
+		List<Score> printGrade = service.printGrade(stdId);
 	
 		int sum = 0;
 		int sumCredit = 0;
 		
-		for (Student s : printGrade) {
+		for (Score s : printGrade) {
 		    String grade = s.getGrade();
 		    int credit = s.getCredit();
 		    int gradePoint = 0;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.study.common.Template;
+import com.study.model.dto.Score;
 import com.study.model.dto.Student;
 
 public class SejongDAO {
@@ -51,9 +52,9 @@ public class SejongDAO {
 	}
 
 
-	public List<Student> printGrade(Connection conn, String stdId) {
+	public List<Score> printGrade(Connection conn, String stdId) {
 
-		List<Student> gradeList = new ArrayList<Student>();
+		List<Score> gradeList = new ArrayList<>();
 		
 		String SQL = """
 				SELECT LCT_NAME, LCT_SEMESTER, GRADE, CREDIT
@@ -75,7 +76,7 @@ public class SejongDAO {
 				String grade = rs.getString("GRADE");
 				int credit = rs.getInt("CREDIT");
 				
-				gradeList.add(new Student(lctName, lctSemester, grade, credit));
+				gradeList.add(new Score(lctName, lctSemester, grade, credit));
 				
 			}
 			

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.study.common.Template;
 import com.study.model.dao.SejongDAO;
+import com.study.model.dto.Score;
 import com.study.model.dto.Student;
 
 public class SejongService {
@@ -30,11 +31,11 @@ public class SejongService {
 		return targetStd;
 	}
 	
-	public List<Student> printGrade(String stdId) {
+	public List<Score> printGrade(String stdId) {
 		
 		Connection conn = Template.getConnection();
 		
-		List<Student> gradeList = new ArrayList<>();
+		List<Score> gradeList = new ArrayList<>();
 		
 		gradeList = dao.printGrade(conn, stdId);
 		
