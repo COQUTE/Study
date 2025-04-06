@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>printGrade</title>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+    }
+    .title {
+        color: black;
+        font-size: 30px;
+    }
+
+    .print {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .totalCredit {
+        margin-top: 25px;
+    }
+
+    th, td {
+        border: 1px solid black;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title"><h1>성적 조회 결과</h1></div>
+        
+        <div>
+        <table class="print">
+            <tr>
+                <th>과목명</th>
+                <th>수강학기</th>
+                <th>성적</th>
+                <th>학점</th>
+            </tr>
+        
+            <c:forEach var="s" items="${printGrade}">
+                <tr>
+                    <td>${s.lctName}</td>
+                    <td>${s.lctSemester} 학기</td>
+                    <td>${s.grade}</td>
+                    <td>${s.credit}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        </div>
+        
+        <div class="totalCredit"><h3>총 이수 학점 : ${totalCredit}</h3></div>
+        <div><h3>평균 학점(GPA) : ${gpa}</h3></div>
+    </div>
+
+</body>
+</html>
