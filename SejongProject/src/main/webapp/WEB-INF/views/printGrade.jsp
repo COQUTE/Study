@@ -23,7 +23,15 @@
 
     .print {
         border: 1px solid black;
-        border-radius: 10px;
+        border-collapse: collapse;
+    }
+
+    .totalCredit {
+        margin-top: 25px;
+    }
+
+    th, td {
+        border: 1px solid black;
     }
     
     #comment1 {
@@ -60,7 +68,7 @@
             <c:forEach var="s" items="${printGrade}">
                 <tr>
                     <td>${s.lctName}</td>
-                    <td>${s.lctSemester}</td>
+                    <td>${s.lctSemester} 학기</td>
                     <td>${s.grade}</td>
                     <td>${s.credit}</td>
                 </tr>
