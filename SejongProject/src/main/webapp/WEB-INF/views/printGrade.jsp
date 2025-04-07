@@ -34,6 +34,10 @@
         border: 1px solid black;
     }
     
+    td {
+    	text-align: center;
+    }
+    
     #comment1 {
     	color : green;
     }
