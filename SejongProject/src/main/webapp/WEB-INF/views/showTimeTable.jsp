@@ -17,12 +17,12 @@
 <body>
 	
 	<h2>시간표</h2>
-	<c:forEach var="name" items="${timeTableList}" varStatus="vs">
+	<c:forEach var="timeTable" items="${timeTableList}" varStatus="vs">
 		
-		
-		${timeTableList[vs.index].getLctName()} <br>
-		${timeTableList[vs.index].getDay()}<br>
-		${timeTableList[vs.index].getHour()}<br>
+		${timeTable.stdName } <br>
+		${timeTable.lctName } <br>
+		${timeTable.day } <br>
+		${timeTable.hour } <br>
 		
 		
 	
