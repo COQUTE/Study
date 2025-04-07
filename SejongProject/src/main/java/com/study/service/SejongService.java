@@ -1,11 +1,13 @@
 package com.study.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.study.common.Template;
 import com.study.model.dao.SejongDAO;
 import com.study.model.dto.Club;
+import com.study.model.dto.Score;
 import com.study.model.dto.Student;
 
 public class SejongService {
@@ -28,6 +30,21 @@ public class SejongService {
 		Template.close(conn);
 		
 		return targetStd;
+	}
+	
+	public List<Score> printGrade(String stdId) {
+		
+		Connection conn = Template.getConnection();
+		
+		List<Score> gradeList = new ArrayList<>();
+		
+		gradeList = dao.printGrade(conn, stdId);
+		
+		Template.close(conn);
+		
+		return gradeList;
+		
+		
 	}
 
 	public List<Club> selectClub(String stdId) {

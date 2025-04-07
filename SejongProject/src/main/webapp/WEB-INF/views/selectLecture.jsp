@@ -1,17 +1,19 @@
-<%@ page session="true"%>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>기능 선택</title>
+<title>나의 강의 조회하기</title>
+
 <script src="https://kit.fontawesome.com/61232e6b3f.js"
 	crossorigin="anonymous"></script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=42dot+Sans:wght@300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 * {
 	background-color: white;
@@ -63,7 +65,6 @@
     .text-left:hover::after {
       width: 100%;
     }
-
 
 
 
@@ -128,85 +129,107 @@
 }
 
 .center {
-	display: flex;
 	height: 500px;
 	padding: 200px;
-	justify-content: center;
+	padding-left: 350px;
+	justify-content: space-between;
 	align-items: center;
 	position: relative;
 }
 
-.center button {
-height : 400px;
-width : 300px;
-display : inline;
-justify-content: center;
-align-items: center;
-text-align: center;
-border-radius: 20px;
+.text-image {
+display: flex;
+}
 
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+.login-select {
+	border: none;
+	background-color: white;
+	text-align: center;
+	font-size: 20px;
+}
 
-  color: #333;
-  cursor: pointer;
-  
-  transition: transform 0.3s ease, background 0.3s ease;
-  
- border : 0px;
+.login-select > option {
+	border: none;
+	background-color: white;
+	text-align: center;
+	font-size: 20px;
+}
+
+.stdId-box {
+	border-radius: 30px;
+	padding: 2px;
+	overflow: hidden;
+	width: 1000px;
+	height: 60px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border : 2px solid #182461;
+}
+
+#query {
+	padding: 10px;
+	font-size: 20px;
+	border: none;
+	outline: none;
+	/* outline : input 태그에 포커싱되었을 때
+  이를 표현하기 위한 바깥선 
+  */
+	flex-basis: 92%;
+	width: 480px;
+	background-color: white;
+	padding-left: 30px;
+}
+
+#search-btn {
+	cursor: pointer;
+	font-size: 25px;
+	color: white;
+	border: none;
+	overflow: none;
+	background-color: #182461;
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	/* transparent : 배경색 투명 */
+}
+
+.center-text1 {
+flex-basis : 60%;
 
 }
 
-.small {
-font-size : 20px;
-color : #63615d;
-padding : 0px;
-font-weight: bold;
+.center-text2 {
+flex-basis : 40%;
+
 }
 
-.big{
-font-size : 40px;
-font-weight: bold;
-padding : 0px;
-color : #4A4A4A;
+.text1 {
+	display: flex;
+	align-items: center;
+	font-size: 50px;
+	font-weight: bold;
 }
 
-
-
-.center form {
-padding : 30px;
+.text2 {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
 }
 
-#icon-bnt {
-font-size : 80px;
+.center-text2>p {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
 }
-
-.center button:hover {
-  transform: scale(1.05);
-}
-
-.center button:active {
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3); /* 눌린 느낌 */
-  transform: translateY(2px); /* 살짝 눌린 것처럼 보이게 */
-}
-
-.lec, .lec * {
-background : #D8CFC4;
-}
-
-.club, .club *{
-background : #F0E7DC;
-}
-
-.table, .table *{
-background : #DDB8B2;
-}
-
-.grade, .grade *{
-background : lightgray;
-}
-
-
 </style>
+</head>
 <body>
 
 	<div class="header">
@@ -233,25 +256,30 @@ background : lightgray;
 		</div>
 	</div>
 
-	<div class="center">
-	
+	<h3 style="color: hotpink;">${sessionScope.stdId}님의
+		<%=request.getParameter("inputYear") %>년도
+		<%=request.getParameter("inputSemester") %>학기 강좌 목록
+	</h3>
 
-	<form action="/yearsem" method="post">
-		<button class="lec"><i id="icon-bnt" class="fa-solid fa-comments"></i><br><p class="small">연도와 학기를 입력해보세요 !</p><p class="big">내 강좌 조회<br><br></p></button>
-	</form>
+	<ul>
+		<li>year : <%=request.getParameter("inputYear") %>
+		<li>semester : <%=request.getParameter("inputSemester") %>
+	</ul>
 
-	<form>
-		<button class="club"><i id="icon-bnt" class="fa-solid fa-gamepad"></i><br><p class="small">회장이라면 원들 정보 조회 가능</p><p class="big">소속 동아리 정보 조회</p></button>
-	</form>
-	
-	<form>
-		<button class="table"><i id="icon-bnt" class="fa-solid fa-landmark"></i><br><p class="small">나의 수업 스케줄 알아보기</p><p class="big">강의 시간표 조회<br><br></p></button>
-	</form>
 
-	<form>
-		<button class="grade"><i id="icon-bnt" class="fa-solid fa-print"></i><br><p class="small">성적은 어떻게 될까</p><p class="big">성적표 조회<br><br></p></button>
-	</form>
-	</div>
+<c:choose>
+    <c:when test="${not empty lectureList}">
+        <c:forEach var="lec" items="${lectureList}">
+            <p>${lec.num} - ${lec.lctId}</p> <!-- getter가 있어야 함 -->
+            <p>${lec}</p> <!-- getter가 있어야 함 -->
+        </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <p>해당하는 강좌가 없습니다.</p>
+    </c:otherwise>
+</c:choose>
+
+
 
 </body>
 </html>

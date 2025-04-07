@@ -11,13 +11,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		System.out.println("test44444444444441");
 		String stdId = req.getParameter("stdId");
 		
 		// 학번이 입력되었기 때문에
@@ -30,9 +31,10 @@ public class LoginController extends HttpServlet {
 		Student student = service.selectStdId(stdId);
 		
 		StringBuilder sb = new StringBuilder();
-		
+		System.out.println("test1");
 		if(student == null) {
 			sb.append("loginFailed");
+			System.out.println("test2");
 			
 			// 로그인 실패시 session 객체에 {login : false} 세팅
 			req.getSession().setAttribute("login", false);
@@ -43,6 +45,7 @@ public class LoginController extends HttpServlet {
 			req.getSession().setAttribute("login", true);
 			req.getSession().setAttribute("stdId", stdId);
 		}
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + sb.toString() + ".jsp");
 		
