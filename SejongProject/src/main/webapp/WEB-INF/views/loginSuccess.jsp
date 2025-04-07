@@ -235,6 +235,7 @@ background : lightgray;
 
 	<div class="center">
 	
+
 	<form action="/yearsem" method="post">
 		<button class="lec"><i id="icon-bnt" class="fa-solid fa-comments"></i><br><p class="small">연도와 학기를 입력해보세요 !</p><p class="big">내 강좌 조회<br><br></p></button>
 	</form>
