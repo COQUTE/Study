@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -36,7 +37,11 @@ public class LoginController extends HttpServlet {
 			
 		} else {
 			sb.append("loginSuccess");
+			// 세션에 저장
+			HttpSession session = req.getSession();
+			session.setAttribute("stdId", stdId);
 		}
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + sb.toString() + ".jsp");
 		

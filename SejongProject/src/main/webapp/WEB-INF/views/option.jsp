@@ -1,11 +1,11 @@
-<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>기능 선택</title>
+<title>나의 수강 강좌 조회하기</title>
+
 <script src="https://kit.fontawesome.com/61232e6b3f.js"
 	crossorigin="anonymous"></script>
 
@@ -63,7 +63,6 @@
     .text-left:hover::after {
       width: 100%;
     }
-
 
 
 
@@ -128,85 +127,102 @@
 }
 
 .center {
-	display: flex;
 	height: 500px;
 	padding: 200px;
-	justify-content: center;
+	padding-left: 350px;
+	justify-content: space-between;
 	align-items: center;
 	position: relative;
 }
 
-.center button {
-height : 400px;
-width : 300px;
-display : inline;
-justify-content: center;
-align-items: center;
-text-align: center;
-border-radius: 20px;
+.text-image {
+display: flex;
+}
 
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 
-  color: #333;
+.center-text1 {
+flex-basis : 60%;
+
+}
+
+.center-text2 {
+flex-basis : 40%;
+
+}
+
+.text1 {
+	display: flex;
+	align-items: center;
+	font-size: 50px;
+	font-weight: bold;
+	padding : 0px;
+	margin : 0px;
+	color : #D8CFC4;
+}
+
+.text2 {
+	display: flex;
+	align-items: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.center-text2>p {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+}
+
+.select-container {
+  width: 300px;
+  background: #e8e8e8;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 30px 20px;
+  text-align: center;
+  
+}
+
+
+.select-button {
+  background-color: #D8CFC4;
+  color: #4A4A4A;
+  border: none;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  
-  transition: transform 0.3s ease, background 0.3s ease;
-  
- border : 0px;
-
+  margin-bottom: 25px;
+  transition: transform 0.2s;
 }
 
-.small {
-font-size : 20px;
-color : #63615d;
-padding : 0px;
-font-weight: bold;
+.input-box {
+  background-color: white;
+  color: #4A4A4A;
+  border: none;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
 }
 
-.big{
-font-size : 40px;
-font-weight: bold;
-padding : 0px;
-color : #4A4A4A;
+.select-button:hover {
+  transform: scale(1.03);
 }
 
+.select-input {
+background-color: #e8e8e8;
 
-
-.center form {
-padding : 30px;
 }
-
-#icon-bnt {
-font-size : 80px;
-}
-
-.center button:hover {
-  transform: scale(1.05);
-}
-
-.center button:active {
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3); /* 눌린 느낌 */
-  transform: translateY(2px); /* 살짝 눌린 것처럼 보이게 */
-}
-
-.lec, .lec * {
-background : #D8CFC4;
-}
-
-.club, .club *{
-background : #F0E7DC;
-}
-
-.table, .table *{
-background : #DDB8B2;
-}
-
-.grade, .grade *{
-background : lightgray;
-}
-
 
 </style>
+</head>
 <body>
 
 	<div class="header">
@@ -234,22 +250,31 @@ background : lightgray;
 	</div>
 
 	<div class="center">
-	
-	<form action="/yearsem" method="post">
-		<button class="lec"><i id="icon-bnt" class="fa-solid fa-comments"></i><br><p class="small">연도와 학기를 입력해보세요 !</p><p class="big">내 강좌 조회<br><br></p></button>
-	</form>
+		<div class="text-image">
+			<div class="center-text1">
+				<div>
+					<p class="text1">
+						${sessionScope.stdId}님의 시간표 조회하기</p>
+				</div>
+				<div>
+					<p class="text2">
+						조회하고 싶은 강좌의 년도와 학기를 입력하세요.</p>
+				</div>
+		</div>
+		<div class="center-text2">
+		
+		<form action="/selectLecture" method="post">
+		<div class="select-container">
+  <div class="select-input">
+    <input type="number" name="inputYear" class="input-box" placeholder="  년도" required> <br>
+    <input type="number" name="inputSemester" class="input-box" placeholder="  학기" required> <br>
+  </div>
 
-	<form>
-		<button class="club"><i id="icon-bnt" class="fa-solid fa-gamepad"></i><br><p class="small">회장이라면 원들 정보 조회 가능</p><p class="big">소속 동아리 정보 조회</p></button>
-	</form>
-	
-	<form>
-		<button class="table"><i id="icon-bnt" class="fa-solid fa-landmark"></i><br><p class="small">나의 수업 스케줄 알아보기</p><p class="big">강의 시간표 조회<br><br></p></button>
-	</form>
-
-	<form>
-		<button class="grade"><i id="icon-bnt" class="fa-solid fa-print"></i><br><p class="small">성적은 어떻게 될까</p><p class="big">성적표 조회<br><br></p></button>
-	</form>
+  <button class="select-button">조회하기</button>
+  </div>
+  </form>
+		</div>
+		</div>
 	</div>
 
 </body>
