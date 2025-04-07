@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -38,6 +39,8 @@ public class LoginController extends HttpServlet {
 		} else {
 			sb.append("loginSuccess");
 			System.out.println("test3");
+			HttpSession session = req.getSession();
+			session.setAttribute("loginSession", student.getStdId());
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + sb.toString() + ".jsp");

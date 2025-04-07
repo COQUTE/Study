@@ -76,7 +76,7 @@
         </table>
         </div>
         
-        <div><h3>총 이수 학점 : ${totalCredit}</h3></div>
+        <div><h3>총 이수 학점 : ${sumCredit}</h3></div>
         <div><h3>평균 학점(GPA) : ${gpa}</h3></div>
         <div class="comment">
         	<c:choose>

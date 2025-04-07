@@ -13,18 +13,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/printGrade")
+@WebServlet("/printGrade") // 페이지가 도달하지 못함
 public class printGradeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
+		System.out.println("zz");
 		
 		SejongService service = new SejongService();
 		
-		List<Score> printGrade = service.printGrade(stdId);
+		String stdId = (String) req.getSession().getAttribute("loginSession");
+		
+		List<Score> printGrade = service.printGrade(stdId); // login 정보를 session으로 저장해서 넣어야 하나? loginController에서 정의해서 여기까지 끌고와야하나?
 	
 		int sum = 0;
 		int sumCredit = 0;
@@ -45,11 +48,12 @@ public class printGradeController extends HttpServlet {
 		    sum += gradePoint * credit;
 		    sumCredit += credit;
 		}
-
+		System.out.println(sumCredit);
 		double gpa = (double)sum / sumCredit;
 		
 		req.setAttribute("printGrade", printGrade);
 		req.setAttribute("gpa", gpa);
+		req.setAttribute("sumCredit", sumCredit);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/printGrade.jsp");
 		dispatcher.forward(req, resp);

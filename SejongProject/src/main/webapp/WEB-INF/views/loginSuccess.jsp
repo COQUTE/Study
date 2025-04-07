@@ -48,7 +48,7 @@
                 </form>
             </div>
             <div class="grade">
-                <form action="/printGrade">
+                <form action="/printGrade" method="get">
                     <button>성적 조회</button>
                 </form>
             </div>
