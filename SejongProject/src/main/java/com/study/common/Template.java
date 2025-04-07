@@ -26,6 +26,8 @@ public class Template {
 			
 			InputStream inputStream = Template.class.getClassLoader().getResourceAsStream("driver.xml");
 			
+			System.out.println(inputStream);
+			
 			if (inputStream == null) {
 			    throw new FileNotFoundException("driver.xml 파일을 찾을 수 없습니다.");
 			}
