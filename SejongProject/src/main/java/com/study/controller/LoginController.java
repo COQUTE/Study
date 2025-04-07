@@ -38,10 +38,13 @@ public class LoginController extends HttpServlet {
 			
 		} else {
 			sb.append("loginSuccess");
-			System.out.println("test3");
+
+			// 세션에 저장
 			HttpSession session = req.getSession();
-			session.setAttribute("loginSession", student.getStdId());
+			session.setAttribute("stdId", stdId);
+
 		}
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/" + sb.toString() + ".jsp");
 		

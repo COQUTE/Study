@@ -1,19 +1,287 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sejong Project</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sejong Project</title>
+<script src="https://kit.fontawesome.com/61232e6b3f.js"
+	crossorigin="anonymous"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=42dot+Sans:wght@300..800&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+* {
+	background-color: white;
+	font-family: "42dot Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.header {
+	display: flex;
+}
+
+.head-left {
+	padding: 30px;
+	flex-basis: 20%;
+}
+
+.text-left {
+	font-weight: bold;
+	text-decoration: none;
+	
+      font-family: 'Poppins', sans-serif;
+      font-size: 48px;
+      color: #2C3E50;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+      transition: transform 0.3s ease;
+}
+
+
+
+    .text-left::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 4px;
+      background-color: #182461;
+      left: 0;
+      bottom: -5px;
+      transition: width 0.3s ease;
+    }
+    
+       .text-left:hover {
+      transform: scale(1.03);
+    }
+
+    .text-left:hover::after {
+      width: 100%;
+    }
+
+
+
+
+.header-center {
+	flex-basis: 60%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header-right {
+	flex-basis: 20%;
+	display: flex;
+}
+
+.small-box {
+	padding: 30px;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.mypage {
+	border: 0;
+	color: gray;
+	flex-basis: 50%;
+	padding: 10px;
+}
+
+.bar {
+	border: 0;
+	color: white;
+	flex-basis: 50%;
+	padding: 10px;
+}
+
+#myicon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px;
+	background-color: #182461;
+	color : white;
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+#baricon {
+	display: flex;
+	font-size: 50px;
+	background-color: black;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.center {
+	height: 500px;
+	padding: 200px;
+	padding-left: 350px;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.text-image {
+display: flex;
+}
+
+.login-select {
+	border: none;
+	background-color: white;
+	text-align: center;
+	font-size: 20px;
+}
+
+.login-select > option {
+	border: none;
+	background-color: white;
+	text-align: center;
+	font-size: 20px;
+}
+
+.stdId-box {
+	border-radius: 30px;
+	padding: 2px;
+	overflow: hidden;
+	width: 1000px;
+	height: 60px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border : 2px solid #182461;
+}
+
+#query {
+	padding: 10px;
+	font-size: 20px;
+	border: none;
+	outline: none;
+	/* outline : input 태그에 포커싱되었을 때
+  이를 표현하기 위한 바깥선 
+  */
+	flex-basis: 92%;
+	width: 480px;
+	background-color: white;
+	padding-left: 30px;
+}
+
+#search-btn {
+	cursor: pointer;
+	font-size: 25px;
+	color: white;
+	border: none;
+	overflow: none;
+	background-color: #182461;
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	/* transparent : 배경색 투명 */
+}
+
+.center-text1 {
+flex-basis : 60%;
+
+}
+
+.center-text2 {
+flex-basis : 40%;
+
+}
+
+.text1 {
+	display: flex;
+	align-items: center;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.text2 {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+}
+
+.center-text2>p {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+}
+</style>
 </head>
 <body>
 
-  <h1>세종대학교 학사정보시스템 비스무레한 거</h1>
+	<div class="header">
+		<div class="head-left">
+			<a href="http://localhost:8080/" class="text-left">SJUniversity</a>
+		</div>
 
-  <form action="/login" method="POST">
-    학생이니? 너의 학번을 입력하렴. <br>
-    <input type="text" name="stdId" required>
-    <button type="submit">로그인</button>
-  </form>
-  
+		<div class="header-center">
+			<div class="small-box">대학소개</div>
+			<div class="small-box">입학안내</div>
+			<div class="small-box">일립대학</div>
+			<div class="small-box">대학원</div>
+			<div class="small-box">대학생활</div>
+			<div class="small-box">기관안내</div>
+		</div>
+
+		<div class="header-right">
+			<div class="mypage">
+				<i id="myicon" class="fa-solid fa-circle-user"></i>
+			</div>
+			<div class="bar">
+				<i id="baricon" class="fa-solid fa-bars"></i>
+			</div>
+		</div>
+	</div>
+
+	<div class="center">
+		<div class="text-image">
+			<div class="center-text1">
+				<div>
+					<p class="text1">
+						넓은 세계로 나를 이끄는<br> 세종대학교<p>
+				</div>
+			<div>
+					<p class="text2">
+				<br> 시작부터
+						다른 기업 친화적인 차별화된 교육 솔루션 제공
+					</p>
+					</div>
+		</div>
+		<div class="center-text2">
+			<div class="image-section">
+      <img src="/src/main/webapp/학사프로그램.png" />
+    	</div>
+		</div>
+		</div>
+		
+		<form action="/login" method="POST" class="stdId-box">
+			<select class="login-select">
+				<option>학생 로그인</option>
+				<option>교수 로그인</option>
+				<option>관리자 로그인</option>
+			</select> <input type="text" placeholder="학번을 입력해주세요." id="query" name="stdId" required>
+			<button type="submit" id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+		</form>
+	</div>
+
 </body>
 </html>
