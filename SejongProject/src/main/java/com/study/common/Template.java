@@ -24,14 +24,10 @@ public class Template {
 				return conn;
 			}
 			
-			InputStream inputStream = Template.class.getClassLoader().getResourceAsStream("driver.xml");
-			
-			if (inputStream == null) {
-			    throw new FileNotFoundException("driver.xml 파일을 찾을 수 없습니다.");
-			}
+			String filePath = Template.class.getResource("/driver.xml").getPath();
 			
 			Properties prop = new Properties();
-			prop.loadFromXML(inputStream);
+			prop.loadFromXML(new FileInputStream(filePath));
 			
 			// driver 메모리에 로드
 			Class.forName(prop.getProperty("driver"));
