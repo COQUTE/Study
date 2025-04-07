@@ -39,7 +39,7 @@ public class SejongService {
 		List<Score> gradeList = new ArrayList<>();
 		
 		gradeList = dao.printGrade(conn, stdId);
-		
+	
 		Template.close(conn);
 		
 		return gradeList;

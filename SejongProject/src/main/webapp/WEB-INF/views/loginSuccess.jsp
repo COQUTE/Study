@@ -240,15 +240,15 @@ background : lightgray;
 		<button class="lec"><i id="icon-bnt" class="fa-solid fa-comments"></i><br><p class="small">연도와 학기를 입력해보세요 !</p><p class="big">내 강좌 조회<br><br></p></button>
 	</form>
 
-	<form>
+	<form action="/function/selectClub">
 		<button class="club"><i id="icon-bnt" class="fa-solid fa-gamepad"></i><br><p class="small">회장이라면 원들 정보 조회 가능</p><p class="big">소속 동아리 정보 조회</p></button>
 	</form>
 	
-	<form>
+	<form action="/timeTable">
 		<button class="table"><i id="icon-bnt" class="fa-solid fa-landmark"></i><br><p class="small">나의 수업 스케줄 알아보기</p><p class="big">강의 시간표 조회<br><br></p></button>
 	</form>
 
-	<form>
+	<form action="/printGrade">
 		<button class="grade"><i id="icon-bnt" class="fa-solid fa-print"></i><br><p class="small">성적은 어떻게 될까</p><p class="big">성적표 조회<br><br></p></button>
 	</form>
 	</div>
