@@ -147,7 +147,10 @@ public class SejongDAO {
 						""";
 
 			pstmt = conn.prepareStatement(query);
-
+			
+			pstmt.setString(1, stdId);
+			rs = pstmt.executeQuery();
+			
 			if (!rs.isBeforeFirst())
 				return stdList;
 
